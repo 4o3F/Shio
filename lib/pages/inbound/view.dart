@@ -21,7 +21,7 @@ class InboundPage extends StatelessWidget {
     http
         .post(
             Uri.parse(
-                "${ShioGlobalStorage.INSTANCE.API_BASE_URL}/audience/enter"),
+                "${ShioGlobalStorage.INSTANCE.apiBaseURL.value}/audience/enter"),
             headers: <String, String>{
               'Authorization':
                   'Bearer ${ShioGlobalStorage.INSTANCE.apiKey.value}'
@@ -78,7 +78,7 @@ class InboundPage extends StatelessWidget {
                             ShioGlobalStorage.INSTANCE.entranceCodeSalt.value))
                         .toString()
                         .substring(
-                            0, ShioGlobalStorage.INSTANCE.ENTRANCE_CODE_LENGTH);
+                            0, ShioGlobalStorage.INSTANCE.entranceCodeLength.value);
                     if (audienceEntranceCode == realAudienceEntranceCode) {
                       ShioGlobalStorage.INSTANCE.addEntranceIDsWaitingSync(audienceID!);
                       showTopSnackBar(Overlay.of(context),
@@ -111,7 +111,7 @@ class InboundPage extends StatelessWidget {
                 color: Colors.white,
               ),
               label: const Text(
-                "Fetch Entrance Code Salt",
+                "Sync Entered Audience IDs",
                 style: TextStyle(color: Colors.white),
               ))
         ],
